@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +13,10 @@ namespace NewShop
             Item sword = new Item("Rat Killer", 200);
             Item shild = new Item("Djamalunga", 150);
             Item poisen = new Item("Best Fiance Killer", 500);
+            List<Item> items = new List<Item>
+            {
+                sword,shild,poisen
+            };
 
             ItemSalor Axmed = new ItemSalor();
             Axmed.AddItem(sword);
@@ -27,20 +31,18 @@ namespace NewShop
             Console.WriteLine("Presss the order of good ");
             int itemOrder = Convert.ToInt32(Console.ReadLine());
 
-            switch (itemOrder)
+            for (int i = 0; i < items.Count; i++)
             {
-                case 1: 
-                    Vasya.Buy(Axmed, "Rat Killer");
+                if (i + 1 == itemOrder)         // потомучто нормальные люди щитают с 1
+                {
+                    Item found = items[i];
+                    Vasya.Buy(Axmed, found.Name);
                     break;
-                case 2:
-                    Vasya.Buy(Axmed, "Djamalunga");
-                    break;
-                case 3:
-                    Vasya.Buy(Axmed, "Best Fiance Killer");
-                    break;
-                default:
-                    Console.WriteLine("Sorry we dont sell such item");
-                    break;
+                }
+                else if(i+1 == items.Count)
+                {
+                    Console.WriteLine("Sorry we dont have such an item");
+                }
             }
         }
         
