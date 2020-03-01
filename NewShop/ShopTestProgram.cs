@@ -28,23 +28,15 @@ namespace NewShop
             Console.WriteLine("Welcome to the shop customer");
             Console.WriteLine("Look at my goods");
             Axmed.Display();
-            Console.WriteLine("Presss the order of good ");
-            int itemOrder = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Presss the name of good ");
+            string itemName =Console.ReadLine();
 
-            for (int i = 0; i < items.Count; i++)
-            {
-                if (i + 1 == itemOrder)         // потомучто нормальные люди щитают с 1
-                {
-                    Item found = items[i];
-                    Vasya.Buy(Axmed, found.Name);
-                    break;
-                }
-                else if(i+1 == items.Count)
-                {
-                    Console.WriteLine("Sorry we dont have such an item");
-                }
-            }
+
+            Vasya.Buy(Axmed, itemName);
+            
+ 
         }
         
     }
 }
+
