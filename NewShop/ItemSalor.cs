@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,14 +14,14 @@ namespace NewShop
         {
             Items = new Dictionary<string, Item>();
         }
-        public Item Sell(Buyer buyer, string itemName)
+
+        public Item Sell(string itemName,float price)
         {
             if (Items.ContainsKey(itemName))
             {
                 Item itemForSale = Items[itemName];
                 float itemPrice = itemForSale.Price;
-                float gettedMoney = buyer.PayForItem(itemPrice);
-                if(gettedMoney >= itemForSale.Price)
+                if(price >= itemForSale.Price)
                 {
                     return itemForSale;
                 }
@@ -42,6 +42,16 @@ namespace NewShop
             {
                 item.Display();
             }
+        }
+
+        public float GetItemPrice(string itemName)
+        {
+            float notPaid = -1;
+            if (Items.ContainsKey(itemName))
+            {
+                return Items[itemName].Price;
+            }
+            return notPaid;
         }
     }
 }
