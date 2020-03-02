@@ -8,6 +8,26 @@ namespace NewShop
 {
     class ShopTestProgram
     {
+        static void Trade(Salor salor,Buyer buyer,string itemName)
+        { 
+            float itemPrice = salor.GetItemPrice(itemName);
+            if(itemPrice > 0)
+            {
+                bool isPaid = buyer.PayForItem(itemPrice);
+                if (isPaid)
+                {
+                    Item boughtItem = salor.Sell(itemName, itemPrice);
+                    if(boughtItem != null)
+                    { 
+                        buyer.Add(boughtItem);
+                    }
+                    Console.WriteLine("\n Тебя наебали");
+                }
+                Console.WriteLine("\n The player doest have inave money ");
+            }
+            Console.WriteLine("\n The item wasnt found");
+        }
+
         public static void Main(String[] arg) 
         {
             Item sword = new Item("Rat Killer", 200);
@@ -30,13 +50,8 @@ namespace NewShop
             Axmed.Display();
             Console.WriteLine("Presss the name of good ");
             string itemName =Console.ReadLine();
-
-
-            Vasya.Buy(Axmed, itemName);
-            
- 
+            Trade(Axmed, Vasya, itemName);
         }
         
     }
 }
-
