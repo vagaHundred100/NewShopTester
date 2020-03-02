@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +10,6 @@ namespace NewShop
     {
         private List<Item> _items = new List<Item>();
         private float _balance = 0;
-        private float _spendAmount = 0;
 
         public string Name { get; private set; }
 
@@ -19,31 +18,16 @@ namespace NewShop
             Name = name;
             _balance = cash;
         }
-        public void Buy(Salor salor, string itemName)
-        {
-            Item boughtItem = salor.Sell(this, itemName);
-            if (boughtItem != null)
-            {
-                _items.Add(boughtItem);
-                _spendAmount = 0;
-            }
-            else
-            {
-                _balance += _spendAmount;
-                _spendAmount = 0;
-            }
-        }
 
-        public float PayForItem(float price)
+        public bool PayForItem(float price)
         {
-            float notSpend = -1;
+            bool isPaid = false;
             if(_balance >= price)
             {
                 _balance -= price;
-                _spendAmount += price;
-                return price;
+                isPaid = true;
             }
-            return notSpend;
+            return isPaid;
         }
 
         public void Display()
@@ -53,6 +37,11 @@ namespace NewShop
                 Console.WriteLine("Player : My Items");
                 item.Display();
             }
+        }
+
+        public void Add(Item item)
+        {
+            _items.Add(item);
         }
     }
 }
