@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +8,9 @@ namespace NewShop
 {
     interface Salor
     {
-        Item Sell(Buyer buyer, string itemName);
+        Item Sell(string itemName,float price);
+
+        float GetItemPrice(string itemName);
         void Display();
     }
 }
